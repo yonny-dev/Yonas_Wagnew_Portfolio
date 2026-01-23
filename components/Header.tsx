@@ -3,7 +3,7 @@
  * Header & Navigation Component
  * 
  * Implements a sticky blurring navbar with programmatic smooth scroll logic.
- * Handles mobile menu state and theme toggle orchestration.
+ * Features the brand logo and handles mobile menu state and theme toggling.
  */
 
 import React, { useState, useEffect } from 'react';
@@ -25,6 +25,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
+    // Tracks scroll position to apply background blur and elevation effects
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -63,10 +64,14 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
             : 'bg-transparent'
         }`}
       >
-        {/* Brand/Logo Section */}
-        <a href="#" onClick={(e) => handleNavClick(e, '#')} className="group flex items-center space-x-2">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center font-display font-bold text-white dark:text-white bg-zinc-900 dark:bg-gradient-to-tr dark:from-zinc-800 dark:to-zinc-900 border border-black/10 dark:border-white/10 group-hover:border-zinc-400 dark:group-hover:border-zinc-500 transition-colors">
-            YW
+        {/* Brand/Logo Section with integrated JPG logo */}
+        <a href="#" onClick={(e) => handleNavClick(e, '#')} className="group flex items-center space-x-3">
+          <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center border border-black/10 dark:border-white/10 group-hover:border-zinc-400 dark:group-hover:border-zinc-500 transition-all shadow-sm">
+            <img 
+              src="https://i.postimg.cc/s2DHMfs3/logo.jpg" 
+              alt="Logo" 
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+            />
           </div>
           <span className="font-display font-bold text-lg tracking-tight text-zinc-900 dark:text-white">
             Yonas <span className="text-zinc-500 font-medium">Wagnew</span>
