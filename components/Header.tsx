@@ -19,13 +19,10 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
-  // State for visual updates when scrolling past a threshold
   const [isScrolled, setIsScrolled] = useState(false);
-  // Mobile menu visibility control
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Tracks scroll position to apply background blur and elevation effects
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -33,11 +30,6 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  /**
-   * Programmatic Navigation Handler
-   * Ensures accurate vertical alignment when clicking section links,
-   * accounting for the fixed header height via CSS scroll-margin-top.
-   */
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
       e.preventDefault();
@@ -58,100 +50,118 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 sm:px-10 lg:px-16 flex items-center justify-center pt-6">
       <nav 
-        className={`w-full max-w-7xl mx-auto flex items-center justify-between px-6 py-4 rounded-full transition-all duration-500 ${
+        className={`w-full max-w-7xl mx-auto flex items-center justify-between px-8 py-5 rounded-full transition-all duration-500 ${
           isScrolled 
             ? 'glass-card border-black/5 dark:border-white/10 shadow-2xl translate-y-[-10px]' 
             : 'bg-transparent'
         }`}
       >
-        {/* Brand/Logo Section with integrated JPG logo */}
         <a href="#" onClick={(e) => handleNavClick(e, '#')} className="group flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center border border-black/10 dark:border-white/10 group-hover:border-zinc-400 dark:group-hover:border-zinc-500 transition-all shadow-sm">
-            <img 
+          {/* Logo Container with layoutId for transition */}
+          <motion.div 
+            layoutId="logo-frame"
+            className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center border border-black/10 dark:border-white/10 group-hover:border-zinc-400 dark:group-hover:border-zinc-500 transition-all shadow-sm bg-white dark:bg-black"
+          >
+            {/* Logo Image with layoutId for transition */}
+            <motion.img 
+              layoutId="logo-image"
               src="https://i.postimg.cc/s2DHMfs3/logo.jpg" 
               alt="Logo" 
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
             />
-          </div>
-          <span className="font-display font-bold text-lg tracking-tight text-zinc-900 dark:text-white">
+          </motion.div>
+          <motion.span 
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="font-display font-bold text-lg tracking-tight text-zinc-900 dark:text-white"
+          >
             Yonas <span className="text-zinc-500 font-medium">Wagnew</span>
-          </span>
+          </motion.span>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center space-x-6">
-          {NAV_ITEMS.map((item) => (
-            <a 
+        <div className="hidden md:flex items-center space-x-8">
+          {NAV_ITEMS.map((item, idx) => (
+            <motion.a 
               key={item.label} 
               href={item.href}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 + (idx * 0.1) }}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-sm font-medium text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors relative group"
+              className="text-sm font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors relative group"
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#FCDC04] group-hover:w-full transition-all duration-300"></span>
-            </a>
+              <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#FCDC04] group-hover:w-full transition-all duration-300"></span>
+            </motion.a>
           ))}
           
-          <div className="h-6 w-[1px] bg-zinc-200 dark:bg-zinc-800 mx-2"></div>
+          <motion.div 
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={{ opacity: 1, scaleY: 1 }}
+            transition={{ delay: 1 }}
+            className="h-6 w-[1px] bg-zinc-200 dark:bg-zinc-800 mx-2"
+          ></motion.div>
 
-          {/* Theme Switcher Toggle */}
-          <button 
+          <motion.button 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.1 }}
             onClick={toggleTheme}
-            className="p-2 rounded-xl glass-card border-black/5 dark:border-white/10 text-zinc-600 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-all transform hover:scale-110 active:scale-95"
+            className="p-2.5 rounded-2xl text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-all transform hover:scale-110 active:scale-95"
             aria-label="Toggle Theme"
           >
-            {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
+            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </motion.button>
 
-          {/* High Priority CTA */}
-          <a 
+          <motion.a 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.2 }}
             href="#contact" 
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="px-5 py-2 rounded-full bg-black dark:bg-white text-white dark:text-black font-semibold text-sm hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all transform hover:scale-105 active:scale-95"
+            className="px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-[0.2em] hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all transform hover:scale-105 active:scale-95 shadow-xl"
           >
             Hire Me
-          </a>
+          </motion.a>
         </div>
 
-        {/* Mobile Toggle Trigger */}
         <div className="flex items-center space-x-4 md:hidden">
           <button onClick={toggleTheme} className="p-2 text-zinc-600 dark:text-zinc-400">
-            {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+            {theme === 'dark' ? <Sun size={22} /> : <Moon size={22} />}
           </button>
           <button className="p-2 text-zinc-600 dark:text-zinc-400" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            {isMenuOpen ? <X /> : <Menu />}
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </nav>
 
-      {/* Full-Screen Mobile Navigation Overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            className="fixed inset-0 z-40 md:hidden bg-white/95 dark:bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="fixed inset-0 z-40 md:hidden bg-white dark:bg-black flex flex-col items-center justify-center p-10"
           >
-            <button className="absolute top-8 right-8 p-2 text-zinc-500 dark:text-zinc-400" onClick={() => setIsMenuOpen(false)}>
+            <button className="absolute top-8 right-8 p-4 text-zinc-500 dark:text-zinc-400" onClick={() => setIsMenuOpen(false)}>
               <X size={32} />
             </button>
-            <div className="flex flex-col items-center space-y-8">
+            <div className="flex flex-col items-center space-y-10 text-center">
               {NAV_ITEMS.map((item) => (
                 <a 
                   key={item.label} 
                   href={item.href}
-                  className="text-3xl font-display font-bold text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors"
+                  className="text-4xl font-display font-bold text-zinc-900 dark:text-white hover:text-[#FCDC04] transition-colors"
                   onClick={(e) => handleNavClick(e, item.href)}
                 >
                   {item.label}
                 </a>
               ))}
-              {/* Cultural Brand Indicators */}
-              <div className="flex space-x-4 pt-8">
-                <div className="w-8 h-1 bg-[#078930]"></div>
-                <div className="w-8 h-1 bg-[#FCDC04]"></div>
-                <div className="w-8 h-1 bg-[#DA121A]"></div>
+              <div className="flex space-x-6 pt-10">
+                <div className="w-10 h-1.5 bg-[#078930] rounded-full"></div>
+                <div className="w-10 h-1.5 bg-[#FCDC04] rounded-full"></div>
+                <div className="w-10 h-1.5 bg-[#DA121A] rounded-full"></div>
               </div>
             </div>
           </motion.div>
