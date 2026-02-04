@@ -83,6 +83,17 @@ export const PROJECTS: Project[] = [
     liveUrl: 'https://maldyor-hotel-menu-updated.vercel.app/',
     problem: 'Hotels and restaurants need a way to present their menu digitally that is as premium as their service, with the ability to update items instantly without reprinting.',
     solution: 'Engineered a lightning-fast, mobile-optimized React application with a custom filtering engine and smooth layout transitions to enhance the guest experience.',
+  },
+  {
+    id: 'kades-bakery',
+    title: 'KADES BAKERY & CAKE',
+    description: 'An artisanal digital storefront for a premium bakery, featuring visual-first product displays and seamless ordering flows.',
+    image: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=2000&auto=format&fit=crop',
+    tags: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Responsive'],
+    githubUrl: 'https://github.com/yonny-dev/kades-bakery',
+    liveUrl: 'https://kades-bakery.vercel.app/',
+    problem: 'Translating the sensory appeal of artisan baked goods into a digital format while maintaining a seamless, accessible user experience for diverse customer bases.',
+    solution: 'Designed an immersive, image-centric interface that combines aesthetic elegance with performant, accessible navigation to drive engagement and conversion.',
   }
 ];
 
