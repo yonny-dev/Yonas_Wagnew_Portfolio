@@ -43,8 +43,9 @@ const App: React.FC = () => {
   };
 
   // Lifecycle to handle initial loading transition
+  // Increased duration to 2.5s to show off the infinity animation
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 800);
+    const timer = setTimeout(() => setIsLoaded(true), 2500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -53,51 +54,106 @@ const App: React.FC = () => {
       {/* Dynamic Tibeb Background Pattern */}
       <div className="fixed inset-0 z-[-1] tibeb-pattern pointer-events-none opacity-40"></div>
       
-      <AnimatePresence>
-        {!isLoaded ? (
-          // Custom engineered splash loader with brand-colored orbital indicators
+      <AnimatePresence mode="wait">
+        {!isLoaded && (
+          // Custom engineered splash loader with Infinite Logo Animation
           <motion.div
             key="loader"
             className="fixed inset-0 z-[100] bg-white dark:bg-black flex flex-col items-center justify-center"
-            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+            exit={{ opacity: 0, transition: { duration: 0.8, delay: 0.2 } }}
           >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="relative w-24 h-24"
-            >
-              <div className="absolute inset-0 border-t-2 border-[#078930] rounded-full animate-spin"></div>
-              <div className="absolute inset-2 border-r-2 border-[#FCDC04] rounded-full animate-spin-slow"></div>
-              <div className="absolute inset-4 border-b-2 border-[#DA121A] rounded-full animate-spin"></div>
-            </motion.div>
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mt-6 font-display font-medium tracking-widest text-zinc-400 dark:text-zinc-500 uppercase text-xs"
-            >
-              Initializing Workspace
-            </motion.span>
+            <div className="relative flex flex-col items-center justify-center">
+              
+              {/* Positioning Wrapper for Logo and Overlay */}
+              <div className="relative w-24 h-24 mb-12">
+                
+                {/* Logo wrapper with layoutId for transition to Header */}
+                <motion.div
+                  layoutId="logo-frame"
+                  className="absolute inset-0 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl z-20 bg-white dark:bg-black"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                  <motion.img 
+                    layoutId="logo-image"
+                    src="https://i.postimg.cc/s2DHMfs3/logo.jpg" 
+                    alt="Logo" 
+                    className="w-full h-full object-cover" 
+                  />
+                </motion.div>
+
+                {/* Infinity Animation - Positioned explicitly ON TOP (z-30) */}
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-28 z-30 pointer-events-none flex items-center justify-center"
+                >
+                  <svg viewBox="0 0 240 120" className="w-full h-full drop-shadow-[0_0_10px_rgba(252,220,4,0.4)]">
+                    <defs>
+                      <linearGradient id="infinityGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#078930" />
+                        <stop offset="50%" stopColor="#FCDC04" />
+                        <stop offset="100%" stopColor="#DA121A" />
+                      </linearGradient>
+                    </defs>
+                    {/* Smooth Infinity Path */}
+                    <motion.path
+                      // Alternate wider path for better visual
+                      d="M120,60 C160,60 200,20 200,60 C200,100 160,60 120,60 C80,60 40,20 40,60 C40,100 80,60 120,60 Z"
+                      fill="none"
+                      stroke="url(#infinityGrad)"
+                      strokeWidth="6"
+                      strokeLinecap="round"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ 
+                        pathLength: [0, 1],
+                        pathOffset: [0, -1],
+                        opacity: 1
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  </svg>
+                </motion.div>
+              </div>
+
+              <motion.span 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ delay: 0.3 }}
+                className="font-display font-bold tracking-[0.3em] text-zinc-900 dark:text-white uppercase text-sm"
+              >
+                YONAS WAGNEW
+              </motion.span>
+            </div>
           </motion.div>
-        ) : (
-          // Main content container with orchestrating layout
-          <motion.main
-            key="content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16"
-          >
-            <Header theme={theme} toggleTheme={toggleTheme} />
-            <Hero />
-            <About />
-            <Skills />
-            <Projects />
-            <Contact />
-            <Footer />
-          </motion.main>
         )}
       </AnimatePresence>
+      
+      {isLoaded && (
+        <motion.main
+          key="content"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16"
+        >
+          <Header theme={theme} toggleTheme={toggleTheme} />
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+          <Footer />
+        </motion.main>
+      )}
     </div>
   );
 };
