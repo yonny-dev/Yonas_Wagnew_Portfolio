@@ -89,9 +89,9 @@ const App: React.FC = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ delay: 0.3, duration: 0.5 }}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-28 z-30 pointer-events-none flex items-center justify-center"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-32 z-30 pointer-events-none flex items-center justify-center"
                 >
-                  <svg viewBox="0 0 240 120" className="w-full h-full drop-shadow-[0_0_10px_rgba(252,220,4,0.4)]">
+                  <svg viewBox="0 0 240 120" className="w-full h-full drop-shadow-[0_0_12px_rgba(252,220,4,0.5)]">
                     <defs>
                       <linearGradient id="infinityGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stopColor="#078930" />
@@ -99,25 +99,41 @@ const App: React.FC = () => {
                         <stop offset="100%" stopColor="#DA121A" />
                       </linearGradient>
                     </defs>
-                    {/* Smooth Infinity Path */}
+                    
+                    {/* 
+                      Thick Infinity Path 
+                      Constructed to have the left top segment move left-to-right to match the arrow direction
+                      Center (120,60) -> Right Loop -> Left Loop -> Return
+                    */}
                     <motion.path
-                      // Alternate wider path for better visual
-                      d="M120,60 C160,60 200,20 200,60 C200,100 160,60 120,60 C80,60 40,20 40,60 C40,100 80,60 120,60 Z"
+                      d="M120,60 C160,60 200,20 200,60 C200,100 160,60 120,60 C80,60 40,100 40,60 C40,20 80,60 120,60"
                       fill="none"
                       stroke="url(#infinityGrad)"
-                      strokeWidth="6"
+                      strokeWidth="12"
                       strokeLinecap="round"
-                      initial={{ pathLength: 0, opacity: 0 }}
+                      strokeLinejoin="round"
+                      initial={{ pathLength: 0, opacity: 0.2 }}
                       animate={{ 
-                        pathLength: [0, 1],
-                        pathOffset: [0, -1],
+                        pathLength: [0, 1, 1],
+                        pathOffset: [0, 0, 1],
                         opacity: 1
                       }}
                       transition={{
-                        duration: 2,
+                        duration: 2.5,
                         repeat: Infinity,
-                        ease: "linear"
+                        ease: "linear",
+                        times: [0, 0.4, 1]
                       }}
+                    />
+
+                    {/* Arrow Head - Positioned on the top curve of the left loop */}
+                    <motion.path
+                      d="M75,30 L95,30 L85,42 Z" // Simple Triangle pointing right
+                      fill="#FCDC04"
+                      initial={{ scale: 0, opacity: 0, rotate: -10 }}
+                      animate={{ scale: 1, opacity: 1, rotate: 10 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      style={{ originX: 0.5, originY: 0.5 }}
                     />
                   </svg>
                 </motion.div>
