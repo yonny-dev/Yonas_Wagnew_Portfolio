@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center space-x-3 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-zinc-400 text-xs font-bold tracking-widest uppercase mb-10"
+            className="inline-flex items-center space-x-3 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-zinc-400 text-[10px] font-bold tracking-widest uppercase mb-10"
           >
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -42,7 +42,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-7xl lg:text-8xl font-display font-bold leading-[1.05] tracking-tighter mb-10 text-left text-zinc-900 dark:text-white"
+            className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold leading-[1.05] tracking-tighter mb-10 text-left text-zinc-900 dark:text-white"
           >
             Yonas Wagnew <br />
             <span className="text-zinc-400 dark:text-zinc-600 font-medium">Front-End Developer</span> & <br />
@@ -58,7 +58,7 @@ const Hero: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-zinc-500 dark:text-zinc-400 max-w-2xl mb-12 leading-relaxed font-light text-left"
+            className="text-base md:text-lg text-zinc-500 dark:text-zinc-400 max-w-2xl mb-12 leading-relaxed font-light text-left"
           >
             Engineering scalable, performant, and accessible digital experiences. Specialized in TypeScript ecosystems and high-fidelity interface development.
           </motion.p>
@@ -70,11 +70,11 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="flex flex-wrap gap-6 justify-start"
           >
-            <a href="#projects" className="px-10 py-5 rounded-2xl bg-black dark:bg-white text-white dark:text-black font-bold flex items-center space-x-3 hover:bg-zinc-800 dark:hover:bg-[#FCDC04] transition-all transform hover:translate-y-[-4px] shadow-2xl text-sm uppercase tracking-widest">
+            <a href="#projects" className="px-10 py-5 rounded-2xl bg-black dark:bg-white text-white dark:text-black font-bold flex items-center space-x-3 hover:bg-zinc-800 dark:hover:bg-[#FCDC04] transition-all transform hover:translate-y-[-4px] shadow-2xl text-xs uppercase tracking-widest">
               <span>Explore Portfolio</span>
               <ArrowUpRight size={20} />
             </a>
-            <a href="#contact" className="px-10 py-5 rounded-2xl glass-card border-black/5 dark:border-white/10 text-zinc-900 dark:text-white font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-all transform hover:translate-y-[-4px] flex items-center text-sm uppercase tracking-widest">
+            <a href="#contact" className="px-10 py-5 rounded-2xl glass-card border-black/5 dark:border-white/10 text-zinc-900 dark:text-white font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-all transform hover:translate-y-[-4px] flex items-center text-xs uppercase tracking-widest">
               connect
             </a>
           </motion.div>
@@ -99,29 +99,28 @@ const Hero: React.FC = () => {
               </div>
               
               <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center space-x-3 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-3xl py-2 px-5 rounded-full border border-black/5 dark:border-white/10 shadow-2xl whitespace-nowrap">
-                 <div className="flex space-x-1.5 flex-shrink-0">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#078930]"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#FCDC04]"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#DA121A]"></div>
-                 </div>
-                 <span className="font-display font-bold text-xs tracking-[0.3em] uppercase text-zinc-900 dark:text-white">
+                 <span className="font-mono font-bold text-[#FCDC04] text-sm">
+                   &lt;/&gt;
+                 </span>
+                 <span className="font-display font-bold text-[10px] tracking-[0.3em] uppercase text-zinc-900 dark:text-white">
                    Yonas Wagnew
                  </span>
               </div>
             </div>
 
+            {/* Efficiency Badge - Reverted to small, high position */}
             <motion.div 
               animate={{ y: [0, -12, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute -right-8 top-1/4 z-20 p-5 rounded-3xl glass-card border-black/5 dark:border-white/20 shadow-2xl hidden sm:block"
+              className="absolute -right-6 top-[15%] z-20 p-3 rounded-2xl glass-card border-black/5 dark:border-white/20 shadow-2xl hidden sm:block"
             >
-              <div className="flex items-center space-x-3">
-                <div className="p-2 bg-[#FCDC04]/20 rounded-xl">
-                   <div className="w-3 h-3 bg-[#FCDC04] rounded-full"></div>
+              <div className="flex items-center space-x-2">
+                <div className="p-1.5 bg-[#FCDC04]/20 rounded-lg">
+                   <div className="w-1.5 h-1.5 bg-[#FCDC04] rounded-full"></div>
                 </div>
-                <div className="pr-4">
-                  <p className="text-[10px] uppercase font-bold text-zinc-400 dark:text-zinc-500 tracking-[0.2em]">Efficiency</p>
-                  <p className="text-xl font-bold text-zinc-900 dark:text-white">99%</p>
+                <div className="pr-2">
+                  <p className="text-[7px] uppercase font-bold text-zinc-400 dark:text-zinc-500 tracking-[0.2em]">Efficiency</p>
+                  <p className="text-sm font-bold text-zinc-900 dark:text-white">99%</p>
                 </div>
               </div>
             </motion.div>
