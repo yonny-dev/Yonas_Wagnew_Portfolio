@@ -74,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.5, duration: 0.5 }}
-            className="font-display font-bold text-lg tracking-tight text-zinc-900 dark:text-white"
+            className="font-display font-bold text-base tracking-tight text-zinc-900 dark:text-white"
           >
             Yonas <span className="text-zinc-500 font-medium">Wagnew</span>
           </motion.span>
@@ -89,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 + (idx * 0.1) }}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-sm font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors relative group"
+              className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors relative group"
             >
               {item.label}
               <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#FCDC04] group-hover:w-full transition-all duration-300"></span>
@@ -120,7 +120,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
             transition={{ delay: 1.2 }}
             href="#contact" 
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-xs uppercase tracking-[0.2em] hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all transform hover:scale-105 active:scale-95 shadow-xl"
+            className="px-6 py-3 rounded-full bg-black dark:bg-white text-white dark:text-black font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-all transform hover:scale-105 active:scale-95 shadow-xl"
           >
             Hire Me
           </motion.a>
@@ -152,7 +152,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
                 <a 
                   key={item.label} 
                   href={item.href}
-                  className="text-4xl font-display font-bold text-zinc-900 dark:text-white hover:text-[#FCDC04] transition-colors"
+                  className="text-2xl font-display font-bold text-zinc-900 dark:text-white hover:text-[#FCDC04] transition-colors"
                   onClick={(e) => handleNavClick(e, item.href)}
                 >
                   {item.label}
