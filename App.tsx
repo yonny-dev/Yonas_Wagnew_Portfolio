@@ -144,7 +144,7 @@ const App: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ delay: 0.3 }}
-                className="font-display font-bold tracking-[0.3em] text-zinc-900 dark:text-white uppercase text-sm"
+                className="font-display font-bold tracking-[0.3em] text-zinc-900 dark:text-white uppercase text-xs"
               >
                 YONAS WAGNEW
               </motion.span>
