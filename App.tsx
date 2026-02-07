@@ -42,7 +42,7 @@ const App: React.FC = () => {
 
   // Lifecycle to handle initial loading transition
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 2800);
+    const timer = setTimeout(() => setIsLoaded(true), 2200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -53,7 +53,7 @@ const App: React.FC = () => {
       
       <AnimatePresence mode="wait">
         {!isLoaded && (
-          // Custom engineered splash loader with Vertical Sequence Animation
+          // Refined minimalist splash loader focusing on Brand Logo
           <motion.div
             key="loader"
             className="fixed inset-0 z-[100] bg-white dark:bg-black flex flex-col items-center justify-center overflow-hidden"
@@ -62,53 +62,12 @@ const App: React.FC = () => {
           >
             <div className="flex flex-col items-center justify-center max-w-xs w-full px-6">
               
-              {/* Top: Infinity Loop Animation (Primary Visual) - Updated to White */}
-              <motion.div 
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="w-48 h-24 mb-6 flex items-center justify-center"
-              >
-                <svg viewBox="0 0 240 120" className="w-full h-full drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-                  <motion.path
-                    d="M120,60 C160,60 200,20 200,60 C200,100 160,60 120,60 C80,60 40,100 40,60 C40,20 80,60 120,60"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    initial={{ pathLength: 0, opacity: 0.1 }}
-                    animate={{ 
-                      pathLength: [0, 1, 1],
-                      pathOffset: [0, 0, 1],
-                      opacity: 1
-                    }}
-                    transition={{
-                      duration: 2.2,
-                      repeat: Infinity,
-                      ease: "linear",
-                      times: [0, 0.4, 1]
-                    }}
-                  />
-
-                  {/* Aesthetic Ethiopian Star Accent */}
-                  <motion.path
-                    d="M75,30 L95,30 L85,42 Z"
-                    fill="#FCDC04"
-                    initial={{ scale: 0, opacity: 0, rotate: -15 }}
-                    animate={{ scale: 1, opacity: 1, rotate: 0 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
-                    style={{ originX: "50%", originY: "50%" }}
-                  />
-                </svg>
-              </motion.div>
-
-              {/* Middle: Brand Logo */}
+              {/* Brand Logo - Centered focus */}
               <motion.div
-                initial={{ scale: 0.8, opacity: 0, y: 10 }}
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                className="relative w-20 h-20 mb-8 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl bg-white dark:bg-black"
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                className="relative w-24 h-24 mb-10 rounded-[2.5rem] overflow-hidden border border-zinc-200 dark:border-zinc-800 shadow-2xl bg-white dark:bg-black"
               >
                 <motion.img 
                   layoutId="logo-image"
@@ -118,22 +77,34 @@ const App: React.FC = () => {
                 />
               </motion.div>
 
-              {/* Bottom: Professional Identity */}
-              <div className="flex flex-col items-center space-y-2">
+              {/* Professional Identity */}
+              <div className="flex flex-col items-center space-y-3">
                 <motion.span 
-                  initial={{ opacity: 0, letterSpacing: "0.5em" }}
+                  initial={{ opacity: 0, letterSpacing: "0.6em" }}
                   animate={{ opacity: 1, letterSpacing: "0.3em" }}
-                  transition={{ duration: 1, delay: 0.8 }}
-                  className="font-display font-bold text-zinc-900 dark:text-white uppercase text-[10px]"
+                  transition={{ duration: 1.2, delay: 0.4 }}
+                  className="font-display font-bold text-zinc-900 dark:text-white uppercase text-xs"
                 >
                   YONAS WAGNEW
                 </motion.span>
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: "40px" }}
-                  transition={{ duration: 0.8, delay: 1.2 }}
-                  className="h-[1.5px] bg-[#FCDC04]"
-                />
+                
+                <div className="relative h-[2px] w-48 bg-zinc-100 dark:bg-zinc-900 overflow-hidden rounded-full">
+                  <motion.div 
+                    initial={{ x: "-100%" }}
+                    animate={{ x: "0%" }}
+                    transition={{ duration: 1.5, delay: 0.2, ease: "easeInOut" }}
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#FCDC04] to-transparent"
+                  />
+                </div>
+
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.4 }}
+                  transition={{ delay: 0.8 }}
+                  className="text-[9px] font-bold uppercase tracking-[0.4em] text-zinc-500"
+                >
+                  Engineering Excellence
+                </motion.span>
               </div>
 
             </div>
