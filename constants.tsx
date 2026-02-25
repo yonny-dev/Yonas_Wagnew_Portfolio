@@ -1,7 +1,5 @@
-
 /**
  * Application Constants & Centralized Content
- * 
  * Contains brand colors, navigation items, skill sets, and project data.
  * This file serves as the single source of truth for the portfolio's content.
  */
