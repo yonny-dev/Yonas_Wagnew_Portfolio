@@ -172,7 +172,7 @@ The website is provided ‘as is’ without warranties of any kind.`
         </div>
 
         <div className="text-zinc-400 text-[10px] font-bold uppercase tracking-[0.3em] opacity-40 italic">
-          LET'S DIGITIZE EVERYTHING!
+          I Build What You Imagine.
         </div>
       </footer>
 
