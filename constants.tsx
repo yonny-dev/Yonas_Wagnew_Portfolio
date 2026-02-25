@@ -80,7 +80,7 @@ export const PROJECTS: Project[] = [
     image: 'https://i.postimg.cc/4yjZY5f8/maldyor_digital_menu.png',
     tags: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
     githubUrl: 'https://github.com/yonny-dev/Maldyor-Hotel-Menu-Updated',
-    liveUrl: 'https://maldyor-hotel-menu-updated.vercel.app/',
+    liveUrl: 'https://maldyor.wezktech.site/',
     problem: 'Hotels and restaurants need a way to present their menu digitally that is as premium as their service, with the ability to update items instantly without reprinting.',
     solution: 'Engineered a lightning-fast, mobile-optimized React application with a custom filtering engine and smooth layout transitions to enhance the guest experience.',
   },
@@ -91,7 +91,7 @@ export const PROJECTS: Project[] = [
     image: 'https://i.postimg.cc/QMSm1R3R/image.png',
     tags: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Responsive'],
     githubUrl: 'https://github.com/yonny-dev/kadesbakerycake',
-    liveUrl: 'https://kadesbakerycake.vercel.app/',
+    liveUrl: 'https://kadesbakerycake.wezktech.site/',
     problem: 'Translating the sensory appeal of artisan baked goods into a digital format while maintaining a seamless, accessible user experience for diverse customer bases.',
     solution: 'Designed an immersive, image-centric interface that combines aesthetic elegance with performant, accessible navigation to drive engagement and conversion.',
   }
