@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import { Github, Phone, MessageSquare, Send, Mail, Globe, Code2, Layers, Cpu, Zap } from 'lucide-react';
+import { Github, Phone, Linkedin, Send, Mail, Globe, Code2, Layers, Cpu, Zap } from 'lucide-react';
 import { NavItem, SkillCategory, Project, SocialLink } from './types';
 
 // Brand Identity: Ethiopian-inspired primary color palette
@@ -101,7 +101,7 @@ export const PROJECTS: Project[] = [
 export const SOCIAL_LINKS: SocialLink[] = [
   { platform: 'Phone', url: 'tel:+251938007979', icon: <Phone size={20} />, label: '+251 938 007 979' },
   { platform: 'GitHub', url: 'https://github.com/yonny-dev', icon: <Github size={20} />, label: '@yonny-dev' },
-  { platform: 'Discord', url: 'https://discord.com/users/yonny_w', icon: <MessageSquare size={20} />, label: '@yonny_w' },
+  { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/yonas-wagnew', icon: <Linkedin size={20} />, label: 'LinkedIn' },
   { platform: 'Telegram', url: 'https://t.me/yonnyw7', icon: <Send size={20} />, label: '@yonnyw7' },
   { platform: 'Email', url: 'mailto:yonaswagnew20@gmail.com', icon: <Mail size={20} />, label: 'Yonaswagnew20@gmail.com' },
 ];
