@@ -1,11 +1,13 @@
+
 /**
  * Application Constants & Centralized Content
+ * 
  * Contains brand colors, navigation items, skill sets, and project data.
  * This file serves as the single source of truth for the portfolio's content.
  */
 
 import React from 'react';
-import { Github, Twitter, MessageSquare, Send, Mail, Globe, Code2, Layers, Cpu, Zap } from 'lucide-react';
+import { Github, Phone, MessageSquare, Send, Mail, Globe, Code2, Layers, Cpu, Zap } from 'lucide-react';
 import { NavItem, SkillCategory, Project, SocialLink } from './types';
 
 // Brand Identity: Ethiopian-inspired primary color palette
@@ -28,43 +30,43 @@ export const NAV_ITEMS: NavItem[] = [
 // Skills Data: Organized by domain expertise with proficiency levels
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: 'Core Architecture',
+    title: 'Frontend Development',
     accentColor: COLORS.ethGreen,
     skills: [
+      { name: 'React / Next.js', level: 96 },
       { name: 'TypeScript', level: 98 },
-      { name: 'React 18+', level: 96 },
-      { name: 'Next.js (App Router)', level: 94 },
-      { name: 'Redux / Zustand', level: 92 },
+      { name: 'TailwindCSS', level: 99 },
+      { name: 'JavaScript (ES6+)', level: 97 },
     ],
   },
   {
-    title: 'UI Engineering',
+    title: 'Backend Development',
     accentColor: COLORS.ethYellow,
     skills: [
-      { name: 'Tailwind CSS', level: 99 },
-      { name: 'Framer Motion', level: 90 },
-      { name: 'Responsive Design', level: 98 },
-      { name: 'Design Systems', level: 95 },
+      { name: 'Node.js / Express', level: 94 },
+      { name: 'Python (FastAPI)', level: 88 },
+      { name: 'REST & GraphQL', level: 92 },
+      { name: 'NestJS', level: 85 },
     ],
   },
   {
-    title: 'Quality & Optimization',
+    title: 'Databases & DevOps',
     accentColor: COLORS.ethRed,
     skills: [
-      { name: 'Accessibility (ARIA)', level: 92 },
-      { name: 'SEO Strategy', level: 88 },
-      { name: 'Performance (CWV)', level: 94 },
-      { name: 'Unit Testing (Jest)', level: 85 },
+      { name: 'PostgreSQL / MongoDB', level: 90 },
+      { name: 'Docker / CI/CD', level: 88 },
+      { name: 'AWS / Vercel', level: 92 },
+      { name: 'Redis', level: 85 },
     ],
   },
   {
-    title: 'Tools & Workflow',
+    title: 'AI & Performance',
     accentColor: '#4f46e5',
     skills: [
-      { name: 'Git / GitHub', level: 95 },
-      { name: 'Vercel / CI/CD', level: 90 },
-      { name: 'Linux Env', level: 85 },
-      { name: 'Chrome DevTools', level: 98 },
+      { name: 'AI API Integration', level: 94 },
+      { name: 'Web Performance', level: 95 },
+      { name: 'OAuth / Security', level: 92 },
+      { name: 'Prompt Engineering', level: 90 },
     ],
   },
 ];
@@ -76,29 +78,29 @@ export const PROJECTS: Project[] = [
     title: 'MALDYOR HOTEL DIGITAL MENU',
     description: 'A professional-grade digital menu system for Maldyor Hotel, featuring dynamic category filtering and high-end animations.',
     image: 'https://i.postimg.cc/4yjZY5f8/maldyor_digital_menu.png',
-    tags: ['React', 'TypeScript', 'Tailwind', 'Framer Motion'],
+    tags: ['Next.js', 'Node.js', 'PostgreSQL', 'TailwindCSS'],
     githubUrl: 'https://github.com/yonny-dev/Maldyor-Hotel-Menu-Updated',
-    liveUrl: 'https://maldyor.wezktech.site/',
+    liveUrl: 'https://maldyor-hotel-menu-updated.vercel.app/',
     problem: 'Hotels and restaurants need a way to present their menu digitally that is as premium as their service, with the ability to update items instantly without reprinting.',
-    solution: 'Engineered a lightning-fast, mobile-optimized React application with a custom filtering engine and smooth layout transitions to enhance the guest experience.',
+    solution: 'Engineered a full-stack solution with a Next.js frontend and a Node.js/PostgreSQL backend for real-time menu management and high-performance delivery.',
   },
   {
     id: 'kades-bakery',
     title: 'KADES BAKERY & CAKE',
     description: 'An artisanal digital storefront for a premium bakery, featuring visual-first product displays and seamless ordering flows.',
     image: 'https://i.postimg.cc/QMSm1R3R/image.png',
-    tags: ['Next.js', 'Tailwind CSS', 'Framer Motion', 'Responsive'],
+    tags: ['Next.js', 'FastAPI', 'MongoDB', 'TailwindCSS'],
     githubUrl: 'https://github.com/yonny-dev/kadesbakerycake',
-    liveUrl: 'https://kadesbakerycake.wezktech.site/',
+    liveUrl: 'https://kadesbakerycake.vercel.app/',
     problem: 'Translating the sensory appeal of artisan baked goods into a digital format while maintaining a seamless, accessible user experience for diverse customer bases.',
-    solution: 'Designed an immersive, image-centric interface that combines aesthetic elegance with performant, accessible navigation to drive engagement and conversion.',
+    solution: 'Designed an immersive, image-centric interface powered by a Python backend for inventory management and order processing.',
   }
 ];
 
 // Social Connectivity Links
 export const SOCIAL_LINKS: SocialLink[] = [
+  { platform: 'Phone', url: 'tel:+251938007979', icon: <Phone size={20} />, label: '+251 938 007 979' },
   { platform: 'GitHub', url: 'https://github.com/yonny-dev', icon: <Github size={20} />, label: '@yonny-dev' },
-  { platform: 'Twitter', url: 'https://twitter.com/yonnyw7', icon: <Twitter size={20} />, label: '@yonnyw7' },
   { platform: 'Discord', url: 'https://discord.com/users/yonny_w', icon: <MessageSquare size={20} />, label: '@yonny_w' },
   { platform: 'Telegram', url: 'https://t.me/yonnyw7', icon: <Send size={20} />, label: '@yonnyw7' },
   { platform: 'Email', url: 'mailto:yonaswagnew20@gmail.com', icon: <Mail size={20} />, label: 'Yonaswagnew20@gmail.com' },
