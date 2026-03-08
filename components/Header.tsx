@@ -6,63 +6,72 @@
  * Features the brand logo and handles mobile menu state and theme toggling.
  */
 
-import React, { useState, useEffect } from 'react';
-import { motion as motionBase, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import { NAV_ITEMS, COLORS } from '../constants';
+import React, { useState, useEffect } from 'react'; // Import React and hooks
+import { motion, AnimatePresence } from 'framer-motion'; // Import motion for animations
+import { Menu, X, Sun, Moon } from 'lucide-react'; // Import icons from lucide-react
+import { NAV_ITEMS } from '../constants'; // Import navigation items from constants
 
-const motion = motionBase as any;
-
+// Interface for Header component props
 interface HeaderProps {
-  theme?: 'dark' | 'light';
-  toggleTheme?: () => void;
+  theme?: 'dark' | 'light'; // Current theme state
+  toggleTheme?: () => void; // Function to toggle theme
 }
 
 const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false); // State to track if user has scrolled
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track mobile menu visibility
 
   useEffect(() => {
+    // Effect to update isScrolled state on window scroll
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 20); // Set to true if scrolled more than 20px
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll); // Cleanup listener
   }, []);
 
+  /**
+   * Handles navigation link clicks.
+   * Implements smooth scrolling for anchor links and updates browser history.
+   */
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
-      e.preventDefault();
-      const targetId = href.replace('#', '');
-      const element = document.getElementById(targetId);
+      e.preventDefault(); // Prevent default anchor behavior
+      const targetId = href.replace('#', ''); // Extract target ID
+      const element = document.getElementById(targetId); // Find target element
       
       if (element) {
-        setIsMenuOpen(false);
+        setIsMenuOpen(false); // Close mobile menu if open
+        // Smooth scroll to the target element
         element.scrollIntoView({ 
           behavior: 'smooth',
           block: 'start'
         });
+        // Update URL hash without jumping
         window.history.pushState(null, '', href);
       }
     }
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 sm:px-10 lg:px-16 flex items-center justify-center pt-6">
+    // Main header container, fixed at the top with responsive padding
+    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-4 sm:px-8 lg:px-16 flex items-center justify-center pt-4 md:pt-6">
+      {/* Navigation bar with dynamic styling and responsive padding */}
       <nav 
-        className={`w-full max-w-7xl mx-auto flex items-center justify-between px-8 py-5 rounded-full transition-all duration-500 ${
+        className={`w-full max-w-7xl mx-auto flex items-center justify-between px-5 md:px-8 py-4 md:py-5 rounded-full transition-all duration-500 ${
           isScrolled 
             ? 'glass-card border-black/5 dark:border-white/10 shadow-2xl translate-y-[-10px]' 
             : 'bg-transparent'
         }`}
       >
+        {/* Logo and Brand Name */}
         <a href="#" onClick={(e) => handleNavClick(e, '#')} className="group flex items-center space-x-3">
-          {/* Logo Container with layoutId for transition */}
+          {/* Animated logo container */}
           <motion.div 
             layoutId="logo-frame"
             className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center border border-black/10 dark:border-white/10 group-hover:border-zinc-400 dark:group-hover:border-zinc-500 transition-all shadow-sm bg-white dark:bg-black"
           >
-            {/* Logo Image with layoutId for transition */}
+            {/* Logo image with hover zoom */}
             <motion.img 
               layoutId="logo-image"
               src="https://i.postimg.cc/s2DHMfs3/logo.jpg" 
@@ -70,6 +79,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
             />
           </motion.div>
+          {/* Brand name with entrance animation */}
           <motion.span 
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
@@ -80,8 +90,10 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
           </motion.span>
         </a>
 
+        {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center space-x-8">
           {NAV_ITEMS.map((item, idx) => (
+            // Individual nav link with staggered entrance animation
             <motion.a 
               key={item.label} 
               href={item.href}
@@ -92,10 +104,12 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
               className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors relative group"
             >
               {item.label}
+              {/* Hover underline effect */}
               <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-[#FCDC04] group-hover:w-full transition-all duration-300"></span>
             </motion.a>
           ))}
           
+          {/* Vertical divider */}
           <motion.div 
             initial={{ opacity: 0, scaleY: 0 }}
             animate={{ opacity: 1, scaleY: 1 }}
@@ -103,6 +117,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
             className="h-6 w-[1px] bg-zinc-200 dark:bg-zinc-800 mx-2"
           ></motion.div>
 
+          {/* Theme toggle button */}
           <motion.button 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -114,6 +129,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </motion.button>
 
+          {/* "Hire Me" CTA button */}
           <motion.a 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -126,6 +142,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
           </motion.a>
         </div>
 
+        {/* Mobile controls: Theme toggle and Menu toggle */}
         <div className="flex items-center space-x-4 md:hidden">
           <button onClick={toggleTheme} className="p-2 text-zinc-600 dark:text-zinc-400">
             {theme === 'dark' ? <Sun size={22} /> : <Moon size={22} />}
@@ -136,6 +153,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
         </div>
       </nav>
 
+      {/* Full-screen Mobile Menu overlay */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -144,9 +162,11 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
             exit={{ opacity: 0, scale: 0.95 }}
             className="fixed inset-0 z-40 md:hidden bg-white dark:bg-black flex flex-col items-center justify-center p-10"
           >
+            {/* Close button for mobile menu */}
             <button className="absolute top-8 right-8 p-4 text-zinc-500 dark:text-zinc-400" onClick={() => setIsMenuOpen(false)}>
               <X size={32} />
             </button>
+            {/* Mobile navigation links */}
             <div className="flex flex-col items-center space-y-10 text-center">
               {NAV_ITEMS.map((item) => (
                 <a 
@@ -158,6 +178,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
                   {item.label}
                 </a>
               ))}
+              {/* Decorative Ethiopian flag colors */}
               <div className="flex space-x-6 pt-10">
                 <div className="w-10 h-1.5 bg-[#078930] rounded-full"></div>
                 <div className="w-10 h-1.5 bg-[#FCDC04] rounded-full"></div>
@@ -171,4 +192,4 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   );
 };
 
-export default Header;
+export default Header; // Export the Header component
