@@ -48,3 +48,4 @@ export interface SocialLink {
   icon: React.ReactNode;
   label: string;
 }
+
