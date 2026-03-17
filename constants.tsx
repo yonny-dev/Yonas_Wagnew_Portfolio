@@ -74,13 +74,24 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 // Project Portfolio Content
 export const PROJECTS: Project[] = [
   {
+    id: 'zemen-expense',
+    title: 'ZEMEN EXPENSE',
+    description: 'A localized personal finance management tool for the Ethiopian market, featuring real-time synchronization and bilingual support.',
+    image: 'https://i.postimg.cc/0NRnQLMZ/imageze.png',
+    tags: ['React', 'TypeScript', 'Supabase', 'TailwindCSS', 'Recharts'],
+    githubUrl: 'https://github.com/yonny-dev/zemen_expense',
+    liveUrl: 'https://zemenexpense.vercel.app',
+    problem: 'Managing personal finances in Ethiopia requires handling local payment platforms like Telebirr and CBE, often needing bilingual support (Amharic/English) which global apps lack.',
+    solution: 'Built a full-stack tracking app using Supabase for real-time data and auth, featuring a bilingual interface, Recharts for visualization, and specific integration points for local banking services.',
+  },
+  {
     id: 'maldyor-menu',
     title: 'MALDYOR HOTEL DIGITAL MENU',
     description: 'A professional-grade digital menu system for Maldyor Hotel, featuring dynamic category filtering and high-end animations.',
     image: 'https://i.postimg.cc/4yjZY5f8/maldyor_digital_menu.png',
     tags: ['Next.js', 'Node.js', 'PostgreSQL', 'TailwindCSS'],
     githubUrl: 'https://github.com/yonny-dev/Maldyor-Hotel-Menu-Updated',
-    liveUrl: 'https://maldyor.wezktech.site/',
+    liveUrl: 'https://maldyor-hotel-menu-updated.vercel.app/',
     problem: 'Hotels and restaurants need a way to present their menu digitally that is as premium as their service, with the ability to update items instantly without reprinting.',
     solution: 'Engineered a full-stack solution with a Next.js frontend and a Node.js/PostgreSQL backend for real-time menu management and high-performance delivery.',
   },
@@ -91,7 +102,7 @@ export const PROJECTS: Project[] = [
     image: 'https://i.postimg.cc/QMSm1R3R/image.png',
     tags: ['Next.js', 'FastAPI', 'MongoDB', 'TailwindCSS'],
     githubUrl: 'https://github.com/yonny-dev/kadesbakerycake',
-    liveUrl: 'https://kadesbakerycake.wezktech.site/',
+    liveUrl: 'https://kadesbakerycake.vercel.app/',
     problem: 'Translating the sensory appeal of artisan baked goods into a digital format while maintaining a seamless, accessible user experience for diverse customer bases.',
     solution: 'Designed an immersive, image-centric interface powered by a Python backend for inventory management and order processing.',
   }
