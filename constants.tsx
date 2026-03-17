@@ -91,7 +91,7 @@ export const PROJECTS: Project[] = [
     image: 'https://i.postimg.cc/4yjZY5f8/maldyor_digital_menu.png',
     tags: ['Next.js', 'Node.js', 'PostgreSQL', 'TailwindCSS'],
     githubUrl: 'https://github.com/yonny-dev/Maldyor-Hotel-Menu-Updated',
-    liveUrl: 'https://maldyor-hotel-menu-updated.vercel.app/',
+    liveUrl: 'https://www.maldyor.wezktech.site',
     problem: 'Hotels and restaurants need a way to present their menu digitally that is as premium as their service, with the ability to update items instantly without reprinting.',
     solution: 'Engineered a full-stack solution with a Next.js frontend and a Node.js/PostgreSQL backend for real-time menu management and high-performance delivery.',
   },
@@ -102,7 +102,7 @@ export const PROJECTS: Project[] = [
     image: 'https://i.postimg.cc/QMSm1R3R/image.png',
     tags: ['Next.js', 'FastAPI', 'MongoDB', 'TailwindCSS'],
     githubUrl: 'https://github.com/yonny-dev/kadesbakerycake',
-    liveUrl: 'https://kadesbakerycake.vercel.app/',
+    liveUrl: 'https://www.kadesbakerycake.wezktech.site',
     problem: 'Translating the sensory appeal of artisan baked goods into a digital format while maintaining a seamless, accessible user experience for diverse customer bases.',
     solution: 'Designed an immersive, image-centric interface powered by a Python backend for inventory management and order processing.',
   }
